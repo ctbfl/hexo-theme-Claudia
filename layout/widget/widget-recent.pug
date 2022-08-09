@@ -6,10 +6,12 @@ main.aside-card-container.recent-widget
             each post in page.posts.sort('date', -1).limit(6).toArray()
                 li.is-flex
                     - var title = post.title || __('title')
+                    - var postURL = url_for(post.path)
+                    - var imgURL = getPostCoverImg(post)
                     // change to element replace image placeholder
                     - var backgroundColor = 'f5f5f5'
                     - var uiAvatarURL = `background=${backgroundColor}&name=${title.slice(0, 2)}`
-                    img.js-img-fadeIn(src= getPostCoverImg(post) || `https://ui-avatars.com/api/?${uiAvatarURL}` alt="cover")
+                    img.js-img-fadeIn(src= postURL + imgURL || `https://ui-avatars.com/api/?${uiAvatarURL}` alt="cover")
                     //else
                     //    div.post-img-placeholder
                     section.is-flex-grow-2
